@@ -67,3 +67,55 @@ https://docs.aws.amazon.com/iot/latest/developerguide/iot-moisture-raspi-setup.h
 - `> sudo docker login`
 - `> sudo docker pull connollyst/iot:latest`
 - `> sudo docker run connollyst/iot`
+
+# Notes
+
+## [Example PWM Code](https://www.waveshare.com/w/upload/8/81/Motor_Driver_HAT_User_Manual_EN.pdf):
+
+```
+pwm = PCA9685(0x40, debug=False)
+pwm.setPWMFreq(50)
+  …
+  self.AIN1 = 1
+  self.AIN2 = 2
+    …
+    pwm.setDutycycle(self.PWMA, speed)
+      …
+      print (“#1 forward”)
+      pwm.setLevel(self.AIN1, 0)
+      pwm.setLevel(self.AIN2, 1)
+      …
+    …
+    print (“stopping”)
+    pwm.setDutycycle(self.PWMA, 0)
+  …
+Motor = MotorDriver()
+print("forward 2 s")
+Motor.MotorRun(0, 'forward', 100)
+Motor.MotorRun(1, 'forward', 100)
+time.sleep(2)
+```
+
+## [Using WiringPi](https://www.instructables.com/Controlling-Any-Device-Using-a-Raspberry-Pi-and-a-/):
+
+```
+gpio readall
+gpio read 0
+gpio read 1
+gpio mode 1 out
+gpio write 1 0
+gpio write 1 1
+```
+
+```
+import RPi.GPIO as GPIO
+import time
+
+pin = 18
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pin, GPIO.OUT)
+GPIO.output(pin, GPIO.HIGH)
+time.sleep(1)
+GPIO.output(pin, GPIO.LOW)
+```
