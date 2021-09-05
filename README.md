@@ -1,4 +1,4 @@
-# aws-iot-relay-rpi
+# AWS IoT: Raspberry Pi Relay
 
 AWS IoT connected relay automation for Raspberry Pi
 
