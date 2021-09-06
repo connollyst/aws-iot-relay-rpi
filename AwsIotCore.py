@@ -55,9 +55,9 @@ class AwsIotCore:
         self._connection = mqtt_connection
         print("Connected!")
 
-    def write(self, json):
-        print("Sending {} to {}".format(json, 'docker'))
-        self._connection.publish(topic='docker', payload=json, qos=mqtt.QoS.AT_LEAST_ONCE)
+    def write(self, topic, json):
+        print("Sending to {}: {}".format(topic, json))
+        self._connection.publish(topic=topic, payload=json, qos=mqtt.QoS.AT_LEAST_ONCE)
         time.sleep(1)
 
     def disconnect(self):
