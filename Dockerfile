@@ -14,4 +14,6 @@ COPY requirements.txt /
 RUN python3 -m pip install -r requirements.txt
 
 COPY main.py /
+COPY AwsIotCore.py /
+COPY certs/ /certs/
 CMD [ "python3", "./main.py" ]

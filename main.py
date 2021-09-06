@@ -1,17 +1,21 @@
 # External module imports
-import time
 
-import RPi.GPIO as GPIO
 
-on = 10
-# off = 30
+# on = 10
+# relayPin = 18
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setup(relayPin, GPIO.OUT)
+# GPIO.output(relayPin, GPIO.HIGH)
+# time.sleep(on)
+# GPIO.output(relayPin, GPIO.LOW)
 
-relayPin = 18  # Broadcom pin 23 (P1 pin 16)
+from uuid import uuid4
 
-GPIO.setmode(GPIO.BCM)  # Broadcom pin-numbering scheme
-GPIO.setup(relayPin, GPIO.OUT)  # LED pin set as output
+from AwsIotCore import AwsIotCore
 
-GPIO.output(relayPin, GPIO.HIGH)
-time.sleep(on)
-GPIO.output(relayPin, GPIO.LOW)
-# time.sleep(off)
+AWS_ENDPOINT = 'a12dev37b8fhwi-ats.iot.us-west-2.amazonaws.com'
+
+writer = AwsIotCore(AWS_ENDPOINT)
+writer.connect("tests-" + str(uuid4()))
+writer.write('{"message":"Hello from Docker!"}')
+writer.disconnect()
