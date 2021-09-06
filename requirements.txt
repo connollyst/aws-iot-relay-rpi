@@ -1,1 +1,2 @@
 RPi.GPIO==0.7.0
+awsiotsdk==1.7.1
