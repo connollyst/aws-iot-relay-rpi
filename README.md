@@ -57,6 +57,9 @@ https://docs.aws.amazon.com/iot/latest/developerguide/iot-moisture-raspi-setup.h
 - `> docker build -t connollyst/rpi-aws-iot-relay .`
 - `> docker push connollyst/rpi-aws-iot-relay`
 
+- `> docker build -t connollyst/rpi-aws-iot-relay:latest -t connollyst/rpi-aws-iot-relay:v0.1.0 .`
+- `> docker push connollyst/rpi-aws-iot-relay:latest && docker push connollyst/rpi-aws-iot-relay:0.1.0`
+
 ## Install Docker on Raspberry Pi
 
 - `> sudo apt-get update && sudo apt-get upgrade && sudo reboot`
