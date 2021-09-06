@@ -3,7 +3,7 @@ import time
 
 import RPi.GPIO as GPIO
 
-on = 60
+on = 10
 # off = 30
 
 relayPin = 18  # Broadcom pin 23 (P1 pin 16)

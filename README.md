@@ -54,19 +54,16 @@ https://docs.aws.amazon.com/iot/latest/developerguide/iot-moisture-raspi-setup.h
 
 ## Build & Push the Docker Image
 
-- `> docker build -t connollyst/iot .`
-- `> docker run connollyst/iot`
-- `> docker push connollyst/iot`
+- `> docker build -t connollyst/rpi-aws-iot-relay .`
+- `> docker push connollyst/rpi-aws-iot-relay`
 
 ## Install & Pull the Docker Image on Raspberry Pi
 
-- `> sudo apt-get update`
-- `> sudo apt-get upgrade`
-- `> curl -fsSL https://get.docker.com -o get-docker.sh`
-- `> sudo sh get-docker.sh`
-- `> sudo docker login`
-- `> sudo docker pull connollyst/iot:latest`
-- `> sudo docker run connollyst/iot`
+- `> sudo apt-get update && sudo apt-get upgrade && sudo reboot`
+- `> curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh`
+- `> sudo docker pull connollyst/rpi-aws-iot-relay:latest`
+- `> sudo docker run --privileged connollyst/rpi-aws-iot-relay`
+- `> sudo docker run --device /dev/gpiomem connollyst/rpi-aws-iot-relay`
 
 # Notes
 
@@ -119,3 +116,8 @@ GPIO.output(pin, GPIO.HIGH)
 time.sleep(1)
 GPIO.output(pin, GPIO.LOW)
 ```
+
+## [Options for Docker GPIO](https://blog.alexellis.io/gpio-on-swarm/)
+
+- `> sudo docker run --privileged connollyst/rpi-aws-iot-relay`
+- `> sudo docker run --device /dev/gpiomem connollyst/rpi-aws-iot-relay`
