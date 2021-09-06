@@ -8,7 +8,7 @@ from AwsIotCore import AwsIotCore
 
 AWS_ENDPOINT = 'a12dev37b8fhwi-ats.iot.us-west-2.amazonaws.com'
 
-on = 10
+on = 30
 relayPin = 18
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(relayPin, GPIO.OUT)
