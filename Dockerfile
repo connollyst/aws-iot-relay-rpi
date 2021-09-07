@@ -15,5 +15,6 @@ RUN python3 -m pip install -r requirements.txt
 
 COPY src/main/python/main.py /
 COPY src/main/python/aws/AwsIotCore.py /aws/
+COPY src/main/python/gpio/Relay.py /gpio/
 COPY certs/ /certs/
 CMD [ "python3", "./main.py" ]

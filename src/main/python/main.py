@@ -2,22 +2,18 @@ import json
 import time
 from uuid import uuid4
 
-import RPi.GPIO as GPIO
-
 from aws.AwsIotCore import AwsIotCore
+from gpio.Relay import Relay
 
 AWS_ENDPOINT = 'a12dev37b8fhwi-ats.iot.us-west-2.amazonaws.com'
 
-on = 30
-relayPin = 18
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(relayPin, GPIO.OUT)
-
+relay = Relay()
+relay_on_duration = 30
 writer = AwsIotCore(AWS_ENDPOINT)
 writer.connect("tests-" + str(uuid4()))
 
 message = {
-    "address": relayPin,
+    "address": relay.pin,
     "addressType": "GPIO",
     "name": "",
     "module": "Relay",
@@ -29,9 +25,11 @@ message['reading'] = {
     "timestamp": time.time()
 }
 writer.write('atlas', json.dumps(message, indent=4, default=str))
-GPIO.output(relayPin, GPIO.HIGH)
-time.sleep(on)
-GPIO.output(relayPin, GPIO.LOW)
+
+relay.turn_on()
+time.sleep(relay_on_duration)
+relay.turn_off()
+
 message['reading'] = {
     "value": "OFF",
     "timestamp": time.time()
