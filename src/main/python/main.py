@@ -4,7 +4,7 @@ from uuid import uuid4
 
 import RPi.GPIO as GPIO
 
-from AwsIotCore import AwsIotCore
+from aws.AwsIotCore import AwsIotCore
 
 AWS_ENDPOINT = 'a12dev37b8fhwi-ats.iot.us-west-2.amazonaws.com'
 
