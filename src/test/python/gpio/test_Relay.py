@@ -98,6 +98,22 @@ class test_Relay(unittest.TestCase):
         # Then
         mock_io.output_low.assert_called_once_with(42)
 
+    def test_should_print_json_for_relay_on(self):
+        # Given
+        relay = Relay(42, Relay.State.ON, gpio=MagicMock(), logger=self.logger)
+        # When
+        json = relay.to_json()
+        # Then
+        self.assertEqual('ON', json['reading']['value'])
+
+    def test_should_print_json_for_relay_off(self):
+        # Given
+        relay = Relay(42, Relay.State.OFF, gpio=MagicMock(), logger=self.logger)
+        # When
+        json = relay.to_json()
+        # Then
+        self.assertEqual('OFF', json['reading']['value'])
+
 
 if __name__ == '__main__':
     unittest.main()

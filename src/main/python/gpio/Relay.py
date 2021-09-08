@@ -58,7 +58,7 @@ class Relay:
             "module": "Relay",
             "version": "0.2",
             "reading": {
-                "value": self.state,
+                "value": self.state.name,
                 "timestamp": time.time()
             }
         }
