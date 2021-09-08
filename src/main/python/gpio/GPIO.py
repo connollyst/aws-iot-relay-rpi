@@ -6,9 +6,6 @@ except ModuleNotFoundError:
 
 class GPIO:
 
-    def __init__(self):
-        print('hi')
-
     def set_mode_bcm(self):
         IO.setmode(IO.BCM)
 

@@ -60,6 +60,42 @@ class test_Relay(unittest.TestCase):
         # Then
         mock_io.output_low.assert_called_with(42)
 
+    def test_should_turn_relay_from_on_to_off(self):
+        # Given
+        mock_io = MagicMock()
+        relay = Relay(42, Relay.State.ON, mock_io)
+        # When
+        relay.off()
+        # Then
+        mock_io.output_low.assert_called_with(42)
+
+    def test_should_turn_relay_from_off_to_on(self):
+        # Given
+        mock_io = MagicMock()
+        relay = Relay(42, Relay.State.OFF, mock_io)
+        # When
+        relay.on()
+        # Then
+        mock_io.output_high.assert_called_once_with(42)
+
+    def test_should_turn_relay_from_on_to_on(self):
+        # Given
+        mock_io = MagicMock()
+        relay = Relay(42, Relay.State.ON, mock_io)
+        # When
+        relay.on()
+        # Then
+        mock_io.output_high.assert_called_once_with(42)
+
+    def test_should_turn_relay_from_off_to_off(self):
+        # Given
+        mock_io = MagicMock()
+        relay = Relay(42, Relay.State.OFF, mock_io)
+        # When
+        relay.off()
+        # Then
+        mock_io.output_low.assert_called_once_with(42)
+
 
 if __name__ == '__main__':
     unittest.main()

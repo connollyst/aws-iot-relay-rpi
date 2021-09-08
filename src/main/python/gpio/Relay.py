@@ -11,10 +11,11 @@ class Relay:
         OFF = 0
 
     def __init__(self, pin, initial: State, gpio=None):
-        self.gpio = gpio or GPIO()
-        self.gpio.set_mode_bcm()
-        self.gpio.set_pin_out(pin)
+        self._gpio = gpio or GPIO()
+        self._gpio.set_mode_bcm()
+        self._gpio.set_pin_out(pin)
         self._pin = pin
+        self._state = None
         self.state = initial
 
     @property
@@ -27,15 +28,25 @@ class Relay:
 
     @state.setter
     def state(self, state: State):
+        if not hasattr(self, '_state'):
+            self._state = None
         print('Setting state to {}'.format(state))
         if state == Relay.State.ON:
-            self._state = state
-            self.gpio.output_high(self.pin)
+            if self._state != Relay.State.ON:
+                self._state = state
+                self._gpio.output_high(self.pin)
         elif state == Relay.State.OFF:
-            self._state = state
-            self.gpio.output_low(self.pin)
+            if self._state != Relay.State.OFF:
+                self._state = state
+                self._gpio.output_low(self.pin)
         else:
-            raise TypeError('Unsupported relay state: {}'.format(state))
+            raise TypeError('Unsupported relay state: {} (current={})'.format(state, self._state))
+
+    def on(self):
+        self.state = Relay.State.ON
+
+    def off(self):
+        self.state = Relay.State.OFF
 
     def to_json(self):
         return {
