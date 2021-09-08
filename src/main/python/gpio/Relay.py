@@ -1,8 +1,10 @@
 #!/usr/bin/python
+
 import time
 from enum import Enum
 
 from .GPIO import GPIO
+from .Logger import get_logger
 
 
 class Relay:
@@ -11,6 +13,7 @@ class Relay:
         OFF = 0
 
     def __init__(self, pin, initial: State, gpio=None):
+        self._logger = get_logger(__name__)
         self._gpio = gpio or GPIO()
         self._gpio.set_mode_bcm()
         self._gpio.set_pin_out(pin)
@@ -30,7 +33,7 @@ class Relay:
     def state(self, state: State):
         if not hasattr(self, '_state'):
             self._state = None
-        print('Setting state to {}'.format(state))
+        self._logger.info('Setting state to {}'.format(state))
         if state == Relay.State.ON:
             if self._state != Relay.State.ON:
                 self._state = state
