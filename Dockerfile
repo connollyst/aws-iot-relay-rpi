@@ -18,6 +18,7 @@ ENV LOG_LEVEL=Debug
 COPY src/main/python/*.py /
 COPY src/main/python/aws/*.py /aws/
 COPY src/main/python/gpio/*.py /gpio/
+COPY src/main/python/rpi/*.py /rpi/
 COPY certs/ /certs/
 
 CMD [ "python3", "./main.py" ]

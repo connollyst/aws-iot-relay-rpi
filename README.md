@@ -35,6 +35,7 @@ network={
 
 ## Build & Push the Docker Image
 
+- `> docker build -t connollyst/rpi-aws-iot-relay . && docker run connollyst/rpi-aws-iot-relay`
 - `> docker build -t connollyst/rpi-aws-iot-relay . && docker push connollyst/rpi-aws-iot-relay`
 
 - `> docker build -t connollyst/rpi-aws-iot-relay:latest -t connollyst/rpi-aws-iot-relay:v0.1.0 .`

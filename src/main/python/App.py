@@ -5,6 +5,7 @@ from uuid import uuid4
 from Logger import get_logger
 from aws.AwsIotCore import AwsIotCore
 from gpio.Relay import Relay
+from rpi.Host import Host
 
 
 class App:
@@ -19,7 +20,8 @@ class App:
         self._duration = duration
 
     def run(self):
-        relay = Relay(pin=self._pin, initial=Relay.State.OFF, logger=self.LOGGER)
+        host = Host()
+        relay = Relay(pin=self._pin, initial=Relay.State.OFF, host=host, logger=self.LOGGER)
         writer = AwsIotCore(self.AWS_ENDPOINT, logger=self.LOGGER)
         writer.connect(self.AWS_CLIENT_ID)
         relay.on()

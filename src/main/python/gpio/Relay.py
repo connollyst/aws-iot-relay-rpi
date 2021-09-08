@@ -12,8 +12,11 @@ class Relay:
         ON = 1
         OFF = 0
 
-    def __init__(self, pin, initial: State, gpio=None, logger=None):
+    def __init__(self, pin, initial: State, gpio=None, host=None, logger=None):
+        if not host:
+            raise RuntimeError("host required")
         self._logger = logger
+        self._host = host
         self._gpio = gpio or GPIO()
         self._gpio.set_mode_bcm()
         self._gpio.set_pin_out(pin)
@@ -53,8 +56,9 @@ class Relay:
 
     def to_json(self):
         return {
-            "address": self.pin,
+            "host": self._host.identifier,
             "addressType": "GPIO",
+            "address": self.pin,
             "module": "Relay",
             "version": "0.2",
             "reading": {
