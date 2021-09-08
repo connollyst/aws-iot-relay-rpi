@@ -1,6 +1,6 @@
 try:
     import RPi.GPIO as IO
-except ModuleNotFoundError:
+except (ModuleNotFoundError, RuntimeError):
     import Mock.GPIO as IO
 
 
