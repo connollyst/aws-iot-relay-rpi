@@ -56,6 +56,7 @@ class Relay:
 
     def to_json(self):
         return {
+            "name": "rpi-pca9685-relay",
             "host": self._host.identifier,
             "addressType": "GPIO",
             "address": self.pin,
