@@ -10,7 +10,7 @@ RUN sudo apt-get update && \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /
+COPY src/main/python/requirements.txt /
 RUN python3 -m pip install -r requirements.txt
 
 COPY src/main/python/main.py /
