@@ -15,7 +15,7 @@ RUN python3 -m pip install -r requirements.txt
 
 ENV LOG_LEVEL=Debug
 
-COPY src/main/python/main.py /
+COPY src/main/python/*.py /
 COPY src/main/python/aws/*.py /aws/
 COPY src/main/python/gpio/*.py /gpio/
 COPY certs/ /certs/
