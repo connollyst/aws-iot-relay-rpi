@@ -32,6 +32,8 @@ network={
 
 - `> sudo apt-get update && sudo apt-get upgrade && sudo reboot`
 - `> curl -sSL https://get.docker.com | sh`
+- `> sudo groupadd docker`
+- `> sudo usermod -aG docker ${USER}`
 
 ## Build & Push the Docker Image
 

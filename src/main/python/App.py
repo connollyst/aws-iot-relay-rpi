@@ -15,13 +15,19 @@ class App:
     AWS_IOT_MQTT_TOPIC = 'atlas'  # 'iot/devices/readings'
     AWS_CLIENT_ID = "iot-relay-" + str(uuid4())
 
-    def __init__(self, pin, duration):
+    def __init__(self, pin, frequency, duration):
         self._pin = pin
+        self._frequency = frequency
         self._duration = duration
+        self._host = Host()
 
-    def run(self):
-        host = Host()
-        relay = Relay(pin=self._pin, initial=Relay.State.OFF, host=host, logger=self.LOGGER)
+    def start(self):
+        while True:
+            self._run()
+            time.sleep(self._frequency)
+
+    def _run(self):
+        relay = Relay(pin=self._pin, initial=Relay.State.OFF, host=self._host, logger=self.LOGGER)
         writer = AwsIotCore(self.AWS_ENDPOINT, logger=self.LOGGER)
         writer.connect(self.AWS_CLIENT_ID)
         relay.on()
