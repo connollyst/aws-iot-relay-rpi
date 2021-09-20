@@ -1,11 +1,9 @@
-FROM balenalib/raspberry-pi-debian:latest
+FROM balenalib/raspberry-pi-debian:buster-build-20210912
 
 MAINTAINER Sean Connolly <connolly.st@gmail.com>
 
 RUN sudo apt-get update && \
     sudo apt-get install -y \
-    cmake \
-    python3-dev \
     python3-pip \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
