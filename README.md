@@ -40,13 +40,13 @@ network={
 - `> docker build -t connollyst/rpi-aws-iot-relay . && docker run connollyst/rpi-aws-iot-relay`
 - `> docker build -t connollyst/rpi-aws-iot-relay . && docker push connollyst/rpi-aws-iot-relay`
 
-- `> docker build -t connollyst/rpi-aws-iot-relay:latest -t connollyst/rpi-aws-iot-relay:vX.Y.Z .`
-- `> docker push connollyst/rpi-aws-iot-relay:latest && docker push connollyst/rpi-aws-iot-relay:vX.Y.Z`
+- `> docker build -t connollyst/rpi-aws-iot-relay:latest -t connollyst/rpi-aws-iot-relay:v1.2.3 .`
+- `> docker push connollyst/rpi-aws-iot-relay:latest && docker push connollyst/rpi-aws-iot-relay:v1.2.3`
 
 ## Pull the Docker Image
 
 - `> docker pull connollyst/rpi-aws-iot-relay:latest`
-- `> docker run --restart=on-failure --privileged connollyst/rpi-aws-iot-relay:vX.Y.Z &`
+- `> docker run --restart=on-failure --privileged connollyst/rpi-aws-iot-relay:v1.2.3 &`
 - `> docker run --device /dev/gpiomem connollyst/rpi-aws-iot-relay`
 
 # Notes
