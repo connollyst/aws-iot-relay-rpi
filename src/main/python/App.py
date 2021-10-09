@@ -15,10 +15,10 @@ class App:
     AWS_IOT_MQTT_TOPIC = 'atlas'  # 'iot/devices/readings'
     AWS_CLIENT_ID = "iot-relay-" + str(uuid4())
 
-    def __init__(self, pin, frequency, duration):
+    def __init__(self, pin, duration, frequency):
         self._pin = pin
-        self._frequency = frequency
         self._duration = duration
+        self._frequency = frequency
         self._host = Host()
 
     def start(self):

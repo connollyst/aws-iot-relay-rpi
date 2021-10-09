@@ -7,6 +7,6 @@ HOURS = 60 * MINUTES
 
 if __name__ == '__main__':
     pin = 18
-    frequency = 10 * MINUTES
     duration = 30 * SECONDS
-    App(pin, frequency, duration).start()
+    frequency = 5 * MINUTES
+    App(pin, duration, frequency).start()
