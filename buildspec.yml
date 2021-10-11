@@ -6,8 +6,9 @@ phases:
       - pip install -r requirements.txt
   build:
     commands:
-      - python -m unittest discover -s src/test/python
-artifacts:
+      - python -m xmlrunner discover -s src/test/python -o target/reports
+
+reports:
   files:
     - '**/*'
-  base-directory: src/main/python
+  base-directory: target/reports

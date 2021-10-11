@@ -1,4 +1,8 @@
+# AWS Dependencies
 awsiotsdk==1.7.1
+# Raspberry Pi Dependencies
 RPi.GPIO==0.7.0
-Mock.GPIO==0.1.8
 getmac
+# Testing Dependencies
+unittest-xml-reporting
+Mock.GPIO==0.1.8
